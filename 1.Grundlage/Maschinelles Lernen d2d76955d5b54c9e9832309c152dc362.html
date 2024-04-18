@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Maschinelles Lernen</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d2d76955-d5b5-4c9e-9832-309c152dc362" class="page sans"><header><h1 class="page-title"><strong>Maschinelles Lernen</strong></h1><p class="page-description"></p></header><div class="page-body"><ul id="e6f97580-6a8e-420e-a7de-70e7eef597e3" class="toggle"><li><details open=""><summary>Anwendungen</summary><ul id="27d1d228-b8df-4b32-a1ac-cf4668c4b685" class="toggle"><li><details open=""><summary>N-gram Modell </summary></details></li></ul><ul id="d3db9eff-5577-4277-9553-ce2cf4947e51" class="toggle"><li><details open=""><summary>Neuronalen Netz Modellen</summary></details></li></ul><ul id="fd42afde-e532-4cee-9757-c28edcda93c9" class="toggle"><li><details open=""><summary>Transformer LLMS</summary></details></li></ul></details></li></ul><ul id="d6c66b1a-564a-48c6-a976-c75f54eeb9a7" class="toggle"><li><details open=""><summary>Vor- und Nachteile </summary><ul id="5a0acf5c-36eb-46bf-b5d3-364aa0f731a9" class="toggle"><li><details open=""><summary>Maschinelles Lernen(Neuronale Netze)</summary><ul id="997b4b92-87db-4076-9709-01375a2268dc" class="bulleted-list"><li style="list-style-type:disc">Daten</li></ul><ul id="1dd5af88-285f-4ee7-9d37-7bf2f8e17fbe" class="bulleted-list"><li style="list-style-type:disc">Abdeckung</li></ul><ul id="bdb2e0cc-fe02-40c2-97e8-3497f43cc151" class="bulleted-list"><li style="list-style-type:disc">Annotationen</li></ul><ul id="1b02c921-c459-474a-9620-1ad6871d464b" class="bulleted-list"><li style="list-style-type:disc">Statistische Kenntnisse</li></ul></details></li></ul><ul id="efbfb3bf-d05e-479a-bb5e-8fc49d871cdb" class="toggle"><li><details open=""><summary>Regelbasierter Ansatz (Symbolische AI)</summary><ul id="189d5201-b545-4247-a874-0ab869be6e79" class="bulleted-list"><li style="list-style-type:disc">Regeln</li></ul><ul id="63b8bc3f-7ef8-41d5-bf9d-355a4d322b08" class="bulleted-list"><li style="list-style-type:disc">Genauigkeit</li></ul><ul id="1562f988-20be-4d1a-9614-ee2b57595a42" class="bulleted-list"><li style="list-style-type:disc">Linguistisches Wissen</li></ul></details></li></ul></details></li></ul><ul id="e8260a85-602f-4cee-aaa8-d21f5dcc9a6b" class="toggle"><li><details open=""><summary>Definitioin (ETPTPE)</summary><ul id="9f089d27-1bb3-4152-904e-858825ffb785" class="bulleted-list"><li style="list-style-type:disc">learn experience E </li></ul><ul id="d365cdc6-d51d-4a32-8515-d90da31be5b8" class="bulleted-list"><li style="list-style-type:disc">respect to some class of tasks T </li></ul><ul id="9dafeed0-e2ed-40b3-a969-635595394aff" class="bulleted-list"><li style="list-style-type:disc">and performance measure P</li></ul><ul id="8468f28e-a60a-4691-a4a0-fa1c86bd3622" class="bulleted-list"><li style="list-style-type:disc">if its performance at tasks in T, </li></ul><ul id="0472e03c-ab68-40c7-980e-de6fc9bbe38c" class="bulleted-list"><li style="list-style-type:disc">as measured by P</li></ul><ul id="2a60e0f4-4a9f-465f-b8c5-3337a7105c28" class="bulleted-list"><li style="list-style-type:disc">improves with experience E</li></ul></details></li></ul><ul id="2f46c31c-3d16-432f-8f70-481fc42ed071" class="toggle"><li><details open=""><summary>Daten</summary><ul id="c5a1ba5e-eae0-4fbd-ac38-f1fe14b1c9eb" class="toggle"><li><details open=""><summary>Datensatz</summary><p id="fd1bd87e-d35a-427f-bae7-17c875d1089c" class="">Sammlung von Instanz</p><p id="980c406b-35bc-4ef3-83a7-7cce4d69701c" class="">Bsp.</p><figure id="a37b57f8-379b-44b4-81fb-d7e371512275" class="image"><a href="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-07_18.44.44.png"><img style="width:1212px" src="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-07_18.44.44.png"/></a></figure><p id="ea1ef633-7282-4b1a-89e0-0ef4fca94016" class="">
+</p></details></li></ul><ul id="b83646b1-569c-4579-a89c-1b76a37d6968" class="toggle"><li><details open=""><summary>Design-Matrix</summary><p id="9eeb177f-b68c-4431-bc71-204a226c6cf8" class="">&quot;Merkmalsvektor&quot;是指将一个对象的特征表示为向量的数学概念。在机器学习中，Merkmalsvektor通常由数字表示，每个数字对应于一个特定的特征。例如，在图像识别中，每个像素的亮度可以作为一个特征，每个像素可以表示为Merkmalsvektor的一个元素。在自然语言处理中，每个单词可以表示为Merkmalsvektor的一个元素，该元素包含有关该单词的语义和上下文信息。Merkmalsvektoren是机器学习算法的重要组成部分，它们可以用于训练模型和预测新数据的标签或属性。</p><p id="665f3df0-4038-41c5-8cd6-1e5da8cd205f" class="">例如，如果您要训练一个机器学习模型来预测某个人是否患有糖尿病，您可以使用一个包含多个特征的Merkmalsvektor来描述每个人。这些特征可以包括年龄、BMI、血糖水平等。然后，您可以使用已知的数据来训练模型，并使用该模型预测新数据的标签（即该人是否患有糖尿病）。</p><p id="9ad491c9-43d6-4c21-8247-5386f3cd2176" class="">另一个例子是在自然语言处理中。假设您要使用机器学习算法来识别文本中的情感。您可以将每个单词表示为Merkmalsvektor的一个元素，并将每个元素与该单词的情感相关的数字相关联。例如，&quot;happy&quot;可能与正向情感相关联，而&quot;sad&quot;可能与负向情感相关联。然后，您可以使用这些Merkmalsvektoren来训练模型，并使用该模型预测新文本的情感。</p><figure id="57a8d465-2028-4ec1-86b0-204c864e583b" class="image"><a href="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-07_18.41.35.png"><img style="width:862px" src="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-07_18.41.35.png"/></a></figure><figure id="5b8026ab-4cfa-42f5-848d-9c2460abe4e2" class="image"><a href="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-07_18.43.35.png"><img style="width:640px" src="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-07_18.43.35.png"/></a></figure></details></li></ul><figure id="abf224aa-9852-4b82-aa42-faecaba22251" class="image"><a href="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/IMG_7E6187CBEC23-1.jpeg"><img style="width:1600px" src="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/IMG_7E6187CBEC23-1.jpeg"/></a></figure></details></li></ul><ul id="f03fa6ab-78f9-4ef6-8571-2cd8a37af52a" class="toggle"><li><details open=""><summary>Aufgaben/Problemklassen</summary><ul id="72c60ef6-4ef6-4d46-857b-4463c6489e01" class="toggle"><li><details open=""><summary>Klassifizierung</summary><ul id="1d95f5e8-ce2f-4354-bd36-b1b4bf27f033" class="toggle"><li><details open=""><summary>Bsp.</summary><ul id="83f96f8a-4dea-41d3-97c0-8df1ecbb4ae2" class="toggle"><li><details open=""><summary>Kategorisierung von Bildausschintten</summary><p id="f2bb281f-30e5-4057-80eb-df6ee01148a7" class="">Merkmalsvektor: Farbteile für jedes Pixel; Davon abgeleitete Merkmale</p><p id="1e338fc2-94f5-44c4-bdb3-fe145513368b" class="">Vorfdifinerte Menge von Ausgabenkategorien</p><p id="641ff63b-434c-4b67-9074-f0fe0050a0e4" class="">
+</p></details></li></ul><ul id="2e393a68-5146-4cdc-8f3f-fef9d71eb2b3" class="toggle"><li><details open=""><summary>Erkennung von Spam Emails</summary><p id="c7c99164-9565-405b-99ba-9f0419ec7026" class="">Merkmalsvektor: Hochdimensionaler Vektor mit wenigen Einträgen ≠ 0 (sparse). Jede DImension zeigt das Vorkommen eines bestimmten Wortes an.</p></details></li></ul></details></li></ul><ul id="08b79231-ede6-4190-85cb-840a42cc70a7" class="toggle"><li><details open=""><summary>Wichtige Konzepte:</summary><ul id="d3409f2f-bfda-4e3c-bc40-4d785b7b73e2" class="toggle"><li><details open=""><summary><strong>Lineares Modell</strong></summary><p id="233f0877-2236-40ba-92b9-a7efaae17739" class="">Jeder Merkmalswert wird mit einem Gewicht multipliziert, die Summe der Produkte ergibt die Vorhersage für eine Klasse.</p></details></li></ul><ul id="f7399127-38d8-4ab0-be50-db0fe54d4f78" class="toggle"><li><details open=""><summary><strong> Fehlerfunktion</strong></summary><p id="4e090754-dc9a-416e-8442-2319d2f7c2e5" class="">Misst, wie gut die echte Labels vorhergesagt werden.</p></details></li></ul><ul id="3cc3b484-60bf-4a0f-95b8-29912b300330" class="toggle"><li><details open=""><summary><strong>Test- und Trainingsdaten</strong></summary><ul id="1295a8c0-b923-478d-953f-5e87d3a69b4d" class="toggle"><li><details open=""><summary>Auf den Großteil 70-80% der Daten wird trainiert, dabei werden 20-30% der Daten zum Test zurückgehalten. Beide Daten<br/>sollten die gleiche Wahrscheinlichkeitsverteilung aufweisen.<br/></summary></details></li></ul></details></li></ul><ul id="7bb79557-63ce-4d4e-819b-c26958b9a82a" class="toggle"><li><details open=""><summary><strong>Overfitting</strong></summary><p id="6702d437-94ba-448a-a05a-7e568bae141c" class="">Wenn auf den Trainingsdaten ein kleiner Fehler, aber auf den Test-Daten ein großer Fehler gemessen wird.</p></details></li></ul><ul id="715d4ae7-e83d-4eef-b0ec-0dbad0cdb889" class="toggle"><li><details open=""><summary><strong>Regularisierung</strong></summary><p id="934be326-b8c5-45bd-840b-b56ba1396b43" class="">Verhindern von Overfitting während des Trainings, durch Einschränkung des Modells. Zum Beispiel, indem einzelne Merkmale nicht beliebig große Modell-Gewichte erhalten können.</p></details></li></ul></details></li></ul></details></li></ul><ul id="d0377fdd-9de3-4371-9ef8-3e95c952ff8f" class="toggle"><li><details open=""><summary>Performanz-Maße(Fehlerfunktionen)</summary><ul id="a7cda00e-a148-481a-9bfd-3377f1dc3340" class="toggle"><li><details open=""><summary><mark class="highlight-yellow_background">Klassifizierung (Klausur relevant)</mark></summary><ul id="be9320d5-0576-4bb1-9b5f-26b0a1a59cf3" class="toggle"><li><details open=""><summary>Accuracy</summary><p id="1a2d1775-2649-43e2-8109-c4ed9d692ce3" class=""><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mi>r</mi><mi>r</mi><mi>o</mi><mi>r</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>e</mi><mo>=</mo><mn>1</mn><mo>−</mo><mi>a</mi><mi>c</mi><mi>c</mi><mi>u</mi><mi>r</mi><mi>a</mi><mi>c</mi><mi>y</mi><mo stretchy="false">(</mo><mn>1</mn><mo>:</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">error rate = 1 - accuracy (1: 100%)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">errorr</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">cc</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">cy</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span></span><span>﻿</span></span>%)<br/><br/></p><figure id="1a2137b5-599b-44bf-a17c-ddb133dfa124" class="image"><a href="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-08_09.51.02.png"><img style="width:1296px" src="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-08_09.51.02.png"/></a></figure></details></li></ul><ul id="72c17b88-f96d-4380-b051-05bb99006c9b" class="toggle"><li><details open=""><summary>F1-Score</summary><figure id="e5e9ae4b-7ce9-42fd-8719-e276878663a9" class="image"><a href="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-08_09.53.38.png"><img style="width:770px" src="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-08_09.53.38.png"/></a></figure><ul id="5d6a666c-189f-420b-9c38-9e403e45e1e9" class="bulleted-list"><li style="list-style-type:disc">“relevant” : Menge der <mark class="highlight-red">Instanzen</mark>, die das relevante Label haben</li></ul><ul id="cffcb7b8-35ef-48af-b8bd-947425d39265" class="bulleted-list"><li style="list-style-type:disc">“retrieved”: Menge der Instanzen für die das relevante Label vorhergesagt wurde<p id="d90fda58-8818-4fbf-95c3-25c8a7009f95" class="">→ Für das F-Measure muss immer ausgewählt werden, welche die relevante Kategorie ist.</p></li></ul><figure id="84b48c9f-5069-445f-adda-b509efbf7308" class="image"><a href="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-08_09.53.49.png"><img style="width:372px" src="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/%25E6%2588%25AA%25E5%25B1%258F2023-06-08_09.53.49.png"/></a></figure><p id="dd43ba64-3417-4dcd-87be-81432b1e1b1e" class="">Der <strong>F1-Score </strong>ist ein Maß für die <mark class="highlight-red">Genauigkeit eines Modells,</mark> das die Präzision und den Recall<br/>kombiniert.<br/><mark class="highlight-red"> Ein perfekter F1-Score ist 1 u</mark>nd ein <mark class="highlight-red">schlechter F1-Score liegt nahe bei 0.</mark></p><p id="19e1ddef-164d-42ed-8258-08fd437495e4" class="">Die <strong>Präzision </strong>misst, wie viele der vom Modell <mark class="highlight-red">als positiv identifizierten Instanzen t</mark>atsächlich<br/><br/><mark class="highlight-red">positiv</mark> sind. Es gibt an, wie genau das Modell in der <mark class="highlight-red">Identifikation von positiven Instanzen</mark> ist.</p><p id="b0394ef6-593f-48e3-8fe9-796b5ec123f9" class="">Der <strong>Recall </strong>gibt hingegen an, wie viele der tatsächlich positiven Instanzen vom Modell korrekt<br/>identifiziert wurden. Er gibt an, wie vollständig das Modell positive Instanzen erfasst hat.<br/></p><figure id="bcbc6b81-99d8-4cab-b9ec-c95f81f0a423" class="image"><a href="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/IMG_87895A4CBA87-1.jpeg"><img style="width:2908px" src="Maschinelles%20Lernen%20d2d76955d5b54c9e9832309c152dc362/IMG_87895A4CBA87-1.jpeg"/></a></figure><ul id="f81d3fba-6ee0-43dd-8439-8aaa3bb6e14c" class="toggle"><li><details open=""><summary>Bsp（um besser zu verstehen)</summary><p id="ac6a608e-1f3a-494a-872d-157e955f5372" class="">苹果区🍊🍊🍊🍊🍎🍎🍎🍎🍎 ｜橙子区🍎🍎🍎🍊🍊🍊🍊🍊</p><table id="e40a84a6-5ae2-443d-93ba-9f6b0fbfd255" class="simple-table"><tbody><tr id="9284e08c-bcc6-4a72-9c69-6657b7beaf95"><td id="\rtl" class=""></td><td id="^SYY" class="">apple</td><td id="Kd`|" class="">orange</td></tr><tr id="39807a87-eae7-4941-9f0e-056477fcbf2f"><td id="\rtl" class="">apple(gold)</td><td id="^SYY" class="">5</td><td id="Kd`|" class="">3</td></tr><tr id="072f76a3-187f-42d7-9ae0-d9518e2f5c67"><td id="\rtl" class="">orange(gold)</td><td id="^SYY" class="">4</td><td id="Kd`|" class="">5</td></tr></tbody></table><p id="6d8e08c6-2216-4e6c-98da-9243b9788f3d" class="">一共8个苹果，9个橙子</p><p id="eefa4ff2-17f7-4667-8005-adc0186baf9c" class="">上面那行就代表在苹果区或橙子区真正有多少，他在这个区真正有多少并不代表，他一共就有多少</p><p id="689b283a-c80e-4356-a11d-f95033e8056e" class="">Accuracy = 10/17</p><p id="4cf2fe44-dde7-484b-b2ae-65e57d8f8e59" class="">apple:</p><p id="05fe9aae-71b2-4b54-be2d-101b505e9b77" class="">Precision = 5/ 9</p><p id="95640c15-5011-4619-969b-0e3543bc5d78" class="">Recall = 5/8</p><p id="9ec540b8-976b-4a43-a050-07de0ff15faa" class="">f1</p><p id="1c4add5e-afa7-4bb8-b360-db80ba637f64" class="">orange：</p><p id="1fed3304-ae89-45dc-adf4-9afaa6786b6f" class="">Precision：5/8</p><p id="ac1dda70-3c69-459c-98b4-875bac6243a0" class="">Recall：5/9</p><p id="f4e5e071-fadb-42f4-83e0-d7dd5faca37a" class="">
+</p></details></li></ul></details></li></ul></details></li></ul><ul id="0ccc4e7c-c347-45ff-a710-c104e2abdffd" class="toggle"><li><details open=""><summary>Ranking</summary><p id="480dc7a1-4566-4b5e-b48e-feeca38b91f5" class="">Mean Average Precision</p><p id="e23737e3-0636-4f0f-ae01-16a93586951b" class="">Spearman’s Rank Correlation</p></details></li></ul><ul id="efef15ab-cf8d-4e14-a086-fe7270534d82" class="toggle"><li><details open=""><summary>Regression</summary><p id="b0bbdbef-dfd8-4bff-92b7-fa7559ea76bc" class="">• Mean Squared Error</p></details></li></ul><ul id="709e1a0c-0712-469c-8cbe-67ecc7132c70" class="toggle"><li><details open=""><summary>Textüberschlappung(maschinelle Übersetzung)</summary><p id="0337f3ca-14bb-4d4f-b3ce-f2e20e607dbd" class="">BLEU</p></details></li></ul><ul id="c97d1845-faa1-494c-8110-5073e34d421f" class="toggle"><li><details open=""><summary>Wahrscheinlichkeitsmodell</summary><p id="49e72f0c-a429-43f5-be35-a70fffaab587" class="">Wahrscheinlichkeit der Daten (Likelihood) kann als Maß verwendet werden<br/><br/></p></details></li></ul></details></li></ul><ul id="3fc4c6be-137c-424b-bbbe-835f2e2883c4" class="toggle"><li><details open=""><summary>Auswahl der Daten</summary><ul id="342e5e19-e224-49b8-802f-b186f9c4bac3" class="toggle"><li><details open=""><summary>Trainingsdaten 60%</summary></details></li></ul><ul id="035e3e6d-597f-4ff8-82a7-81fc88af9015" class="toggle"><li><details open=""><summary>Testdaten 20%</summary></details></li></ul><ul id="5436de1b-ad49-496b-961a-512214ea6319" class="toggle"><li><details open=""><summary>Entwicklungsdaten 20%</summary></details></li></ul></details></li></ul></details></li></ul><ul id="9ceba08e-a956-431d-977e-643ab8aacc9f" class="toggle"><li><details open=""><summary>Sentiment-Analysis</summary><ul id="6cf2dcaf-dbf3-4616-98dd-68f75a3b027b" class="toggle"><li><details open=""><summary>Bsp. </summary><p id="13ff65ea-bccf-4cf5-9715-85c03a4b3a87" class="">Posted by: XYZ | Date: September 16, 2011</p><p id="df780f26-4748-4863-8c10-5b11cbba0b7c" class="">“The new ABC camera is amazing! I bought it a few months ago and I really like it. The battery life is much longer than<br/>that of my previous camera. However, my partner thinks its too heavy and was too expensive.”<br/></p><ul id="49ea0418-fbf8-416a-8d1e-6f3e055ea99a" class="bulleted-list"><li style="list-style-type:disc"><strong>Entity: </strong>Meinung über ABC camera</li></ul><ul id="5360dbe7-6efb-4a76-80d0-f16c327b071b" class="bulleted-list"><li style="list-style-type:disc"><strong>Aspects: </strong>Batteriedauer, Gewicht, Preis</li></ul><ul id="d30ef26d-0898-43da-973f-186d7dde8e18" class="bulleted-list"><li style="list-style-type:disc"><strong>Opinion Holder: </strong>XYZ, XYZ’s Partner</li></ul><ul id="4a82cdc0-ba30-4a12-bb9a-234ab7ea48af" class="bulleted-list"><li style="list-style-type:disc"><strong>Sentiment: </strong>Bewertung der jeweiligen Aspekte durch Opinion Holder</li></ul><ul id="633c0ae5-c082-4cf6-bdca-2ec3a2857ed8" class="bulleted-list"><li style="list-style-type:disc"><strong>Date: </strong>September 16, 2011</li></ul></details></li></ul></details></li></ul><ul id="25b4e8e5-0540-46d0-9ff8-517502750d93" class="toggle"><li><details open=""><summary>Perzeptron Algorithmus</summary><ul id="f6b646c2-7a01-4b46-a181-a25dbe455ec6" class="toggle"><li><details open=""><summary>Idee</summary><ul id="b1880759-3250-4c14-a095-c3e16164b02d" class="bulleted-list"><li style="list-style-type:disc">Der Perzeptron-Algorithmus fällt in die Gruppe der <strong>diskriminativen</strong> Modelle</li></ul><ul id="cdf7d740-8588-4de6-aa43-e1269ea9185b" class="bulleted-list"><li style="list-style-type:disc">Optimiert die Qualität der Vorhersage.</li></ul><ul id="6df58391-93a2-4bb3-8eb3-8cd97ff52147" class="bulleted-list"><li style="list-style-type:disc"><em>Gegeben die Merkmale, was ist die korrekte Klasse?</em></li></ul><ul id="456896b8-dcb2-40b6-a6cc-cf242435e958" class="bulleted-list"><li style="list-style-type:disc">P( Klasse | Merkmale ) = ?</li></ul><p id="f8916e7a-9202-4e53-ad88-3de4fa393df6" class="">
+</p></details></li></ul><ul id="6d2501cc-f063-48bd-8b55-00def69006e1" class="toggle"><li><details open=""><summary>Anpassung der Gewichte</summary><ul id="29a4ba88-97b2-4d72-af54-ebe0cf309e4d" class="bulleted-list"><li style="list-style-type:disc">Falls richtige Vorhersage für Trainings-Instanz: mache nichts</li></ul><ul id="8385c945-0e9f-4f60-b2a7-b74930d2207a" class="bulleted-list"><li style="list-style-type:disc">Sonst: Erhöhe/verringere Gewichte für jede Instanz so, dass der Score sich in die richtige Richtung verändert.</li></ul><ul id="e9ebc241-1b4c-4842-a3c0-6b611958e617" class="bulleted-list"><li style="list-style-type:disc">Gewichte für Merkmale, die besonders häufig mit einer der beiden Klassen vorkommen, erhalten viele Anpassungen in die jeweilige Richtung.</li></ul><ul id="fd6e3f1a-656c-49ff-8f8d-a67878ca3e0f" class="bulleted-list"><li style="list-style-type:disc">Die Gewichte für Merkmale, die in beiden Klassen ungefähr gleich häufig vorkommen (z.B. movie) werden mal in die eine und mal in die andere Richtung verändert</li></ul><p id="4a62a616-d2e7-4444-8136-1c728d26eb36" class="">在感知机算法的训练步骤中，对于每个训练样本，如果感知机对该样本的分类结果与真实标签不一致，则需要更新权重向量。对于二分类问题，权重向量的更新如下：</p><p id="cbf3df67-11e0-43a6-8c50-092dee71d39d" class=""><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>=</mo><mi>w</mi><mo>+</mo><mi>y</mi><mo>∗</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">w = w + y * x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6597em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span><span>﻿</span></span></p><p id="edf53424-6339-4acd-b3e1-92b6bad32cfc" class="">其中，w 是权重向量，y 是样本的真实标签，x 是样本的特征向量。</p><p id="a143e04d-cfdd-4df4-9865-d532cd110c97" class="">
+</p><p id="d3297614-d4eb-4c7e-af52-ebc6c3fe3f30" class="">实例 x 的特征为 {&#x27;the&#x27;: 1, &#x27;movie&#x27;: 2, &#x27;bad&#x27;: 1}，标签为 False。</p><p id="7cb2eca2-779a-4bbd-8625-4609ce395f01" class="">权重向量为 {&#x27;movie&#x27;: 2, &#x27;very&#x27;:1, &#x27;good&#x27;:-1,&#x27;bad&#x27;:-1}。</p><p id="f7bc8727-cc59-4f98-887d-7e42175d3dd0" class="">因为该实例的真实标签为 False，我们需要更新权重向量。</p><p id="85f5b75e-d0a5-4296-b39d-b6e8caea298c" class="">根据上述更新公式，可以得到：</p><p id="66e8f458-e421-486b-9d28-5af455dea26d" class="">w = w + (-1) * {&#x27;the&#x27;: 1, &#x27;movie&#x27;: 2, &#x27;bad&#x27;: 1}</p><p id="ec62266e-c14c-4f06-be3a-0b8ca3ad45f7" class="">在给定的代码中，<code>y</code> 被设置为 <code>-1</code>，因为与此更新相关的训练示例是负面示例。在感知机算法中，正面示例的标签为 <code>1</code>，而负面示例的标签为 <code>-1</code>。每个示例的权重更新取决于示例的标签和预测标签。如果预测标签与真实标签相同，则不更新权重。如果预测标签与真实标签不同，则根据预测标签和真实标签之间的差异乘以示例的特征向量来更新权重。在这种情况下，由于示例是负面的（<code>y</code> 是 <code>-1</code>），而预测标签是正面的（因为权重正在被减去），因此更新使用 <code>-1</code> 作为权重更新公式中的标签。</p><p id="e96c0224-defe-4cf6-aa42-ac9c486222f4" class="">将上式代入，得到：</p><p id="a842a6c4-fe31-4bff-893f-bc5157eb57a1" class="">w = {&#x27;movie&#x27;: 2, &#x27;very&#x27;:1, &#x27;good&#x27;:-1,&#x27;bad&#x27;:-1} + {&#x27;the&#x27;: -1, &#x27;movie&#x27;: -2, &#x27;bad&#x27;: -1}</p><p id="2b00a567-ac0d-420f-9f81-bba3ce7a88e1" class="">w = {&#x27;the&#x27;: -1, &#x27;movie&#x27;: 0, &#x27;very&#x27;: 1, &#x27;good&#x27;: -1, &#x27;bad&#x27;: -1}</p><p id="5996a7d0-0d92-4e16-b9a4-4611fe1ea6f0" class="">但是，由于我们在这个问题中使用了一个修改后的感知机算法，它允许我们将权重向量中所有值为 0 的元素删除。因此，将权重向量 w 中的值为 0 的元素删除后，得到：</p><p id="1608c1d6-9c3b-43b5-a5d8-b3b93c6f8d35" class="">w = {&#x27;the&#x27;: 0, &#x27;movie&#x27;: 2, &#x27;very&#x27;: 1, &#x27;good&#x27;: -1, &#x27;bad&#x27;: 0}</p><p id="61943db3-a61f-476e-a6dc-4061b807d68f" class="">这就是训练步骤之后，权重向量变为 {&#x27;the&#x27;: [0], &#x27;movie&#x27;: [2], &#x27;very&#x27;: [1], &#x27;good&#x27;: [-1], &#x27;bad&#x27;: [0]} 的原因。</p><p id="1bf112fd-0118-4d3a-add9-3b6ae0657f2c" class="">
+</p><p id="5bbae5d3-2172-48ea-81f3-afe2f86ef847" class="">最后一步是使用更新后的权重向量来预测该实例的分类结果。</p><p id="6c9c2f28-3e3b-469a-8d14-6f8e1be5789f" class="">在这个问题中，给定的实例 x 的特征为 {&#x27;the&#x27;: 1, &#x27;movie&#x27;: 2, &#x27;bad&#x27;: 1}，标签为 False。权重向量为 {&#x27;the&#x27;: 0, &#x27;movie&#x27;: 2, &#x27;very&#x27;: 1, &#x27;good&#x27;: -1, &#x27;bad&#x27;: 0}。我们使用以下公式来计算 x 的预测标签：</p><p id="d0b0fa3e-f959-41df-9101-29c88a848f01" class="">prediction = sign(w · x)</p><p id="19d74ee4-9136-44af-9f03-c37797a06b81" class="">其中，w 是更新后的权重向量，· 表示点积运算，sign() 是符号函数，它返回一个数的符号，即如果数为正，则返回 1，如果数为零，则返回 0，如果数为负，则返回 -1。</p><p id="c1854c6e-c193-49c7-8495-f5130eee0aa3" class="">将 x 和 w 的点积计算如下：</p><p id="23c81101-f5e2-4610-a447-d22786e17789" class="">w · x = (0 * 1) + (2 * 2) + (1 * 1) + (-1 * 0) + (0 * 1)</p><p id="e39f3c90-d92b-499c-8304-2880177e0960" class="">w · x = 5</p><p id="08213034-b3bd-4697-a8d9-88a6ed4407d1" class="">因为 w · x 是正数，所以预测标签为 True。</p><p id="769ea1e7-cf86-4abd-856e-be4446a1b6c4" class="">因此，使用更新后的权重向量 {&#x27;the&#x27;: 0, &#x27;movie&#x27;: 2, &#x27;very&#x27;: 1, &#x27;good&#x27;: -1, &#x27;bad&#x27;: 0}，可以正确地预测该实例的分类结果为 True。</p></details></li></ul><ul id="bc70dc72-0070-4ed2-8579-6047f0761534" class="toggle"><li><details open=""><summary>Perzeptron-Update für eine Instanz</summary><p id="995e96c4-1431-4eff-80d4-8d64ed047f2d" class="">● Wenn das Label übereinstimmt, kein Update der Gewicht<br/>● Ansonsten:<br/></p><ul id="b6369438-1660-42d6-8b5d-cb1f596f8d86" class="bulleted-list"><li style="list-style-type:disc">Wenn Vorhersage True und wahres Label False: error = 1<br/>(Verringern der Gewichte in Abhängigkeit des Merkmalswertes)<br/></li></ul><ul id="eae912e9-ee81-412f-a751-718f980cfabf" class="bulleted-list"><li style="list-style-type:disc">Wenn Vorhersage False und wahres Label True: error = -1<br/>(Erhöhen der Gewichte in Abhängigkeit des Merkmalswertes)<br/></li></ul><ul id="4bc745d3-cd84-43a0-aa80-07af1f76d908" class="bulleted-list"><li style="list-style-type:disc">Update für Gewicht wj (und Merkmalsvorkommen xj(i))<br/>wj ← wj - error * xj(i)<br/></li></ul></details></li></ul></details></li></ul><p id="9cd5d5b4-3334-4603-8d38-a3132934e7ce" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
